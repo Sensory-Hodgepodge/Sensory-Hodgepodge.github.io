@@ -1,0 +1,10 @@
+title: Video Katalog
+plugins:
+  - jekyll-remote-theme
+
+remote_theme: pmarsceill/just-the-docs
+
+collections:
+  songs:
+    output: true
+    permalink: /songs/:name/
