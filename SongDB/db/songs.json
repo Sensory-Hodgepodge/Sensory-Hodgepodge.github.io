@@ -1,0 +1,34 @@
+{
+  "_default": {
+    "1": {
+      "title": "Example Song",
+      "artist": "Example artist",
+      "date_recorded": "2024-02-08",
+      "spotify_link": "https://spotify.com/example AGAIN",
+      "youtube_link": "https://youtube.com/example",
+      "difficulty": "Medium",
+      "tolerability": "High",
+      "vibe": "Chill"
+    },
+    "2": {
+      "title": "Test tittel",
+      "artist": "Test artist",
+      "date_recorded": "i dag",
+      "spotify_link": "spotify link test",
+      "youtube_link": "Youtube link test",
+      "difficulty": "VELDIG vanskelig",
+      "tolerability": "Tja, helt grei vel?",
+      "vibe": "oh yes, vibe."
+    },
+    "3": {
+      "title": "Test 2",
+      "artist": "Test 2",
+      "date_recorded": "Test 2",
+      "spotify_link": "Test 2",
+      "youtube_link": "Test 2",
+      "difficulty": "Test 2",
+      "tolerability": "Test 2",
+      "vibe": "Test 2"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "attributes": [
+    "title",
+    "artist",
+    "date_recorded",
+    "spotify_link",
+    "youtube_embed_link",
+    "difficulty",
+    "tolerability",
+    "vibe",
+    "source"
+  ]
+}
