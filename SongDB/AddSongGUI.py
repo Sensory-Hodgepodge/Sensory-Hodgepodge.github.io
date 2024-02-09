@@ -8,6 +8,35 @@ app = Flask(__name__)
 load_dotenv()
 
 
+def get_datalists():
+    db = SongDatabase()
+    songs = db.fetch_all_songs()
+    lists = {"difficulty": {}, "tolerability": {},
+             "vibe": {}, "source": {}, "genre": {}}
+    for song_obj in songs:
+        song = song_obj.to_dict()
+        for attribute in song:
+            if str(attribute) in lists:
+                lists[str(attribute)][song[attribute]] = song[attribute]
+    output_string = ""
+    print("lists:")
+    print(lists)
+    for list in lists:
+        print("legger til i liste: ", str(list))
+        output_string = output_string + f'''
+        <datalist id="{str(list)}Datalist">
+        '''
+        for opts in lists[list]:
+            print("følgende valg: ", str(opts))
+            output_string = output_string + f'''
+                <option value="{str(opts)}">
+            '''
+        output_string = output_string + f'''
+        </datalist>
+        '''
+    return output_string
+
+
 def get_form_elements():
     output_string = ""
     attributes = get_attributes_and_names()
@@ -18,13 +47,9 @@ def get_form_elements():
             output_string = output_string + f'''
             <input type="date" name="{attribute}" name="{attribute}" id="{attribute}" style="width: 12rem">
             '''
-        elif "tolerability" in f'{attribute}':
-            output_string = output_string + f'''
-            <input style="width: 12rem" type="text" list="tolerabilityDatalist" id="tolerability" name="tolerability" autocomplete="off" />
-            '''
         else:
             output_string = output_string + f'''
-            <input style="width: 12rem" type="text" name="{attribute}" id="{attribute}">
+            <input style="width: 12rem" type="text" name="{attribute}" id="{attribute}" list="{attribute}Datalist" autocomplete="off">
             '''
         output_string = output_string + '</div>'
     return output_string
@@ -155,12 +180,7 @@ def HTML_TEMPLATE():
 </style>
 </head>
 <body>
-<datalist id="tolerabilityDatalist">
-  <option value="Faktisk bra sang">
-  <option value="Ganske tolererbar">
-  <option value="I grenseland">
-  <option value="Er dette musikk?">
-</datalist>
+''' + get_datalists() + '''
     <h2>Add a New Song</h2>
     <div style="display: flex;">
     <form method="post" >
@@ -168,7 +188,7 @@ def HTML_TEMPLATE():
         <input type="submit" value="Submit">
     </form>
     <div style="padding: 0.25rem; margin-left: 5rem; width: 20rem;">
-    <input type="text" id="searchBox" style="width: 100%" placeholder="Search spotify">
+    <input type="text" id="searchBox" style="width: 100%" placeholder="Search for song">
     <div id="searchresult-container-parent" style="width: 100%">
     <div class="loading hidden" id="loading">
         <div class="loading-spinner"></div>
@@ -179,6 +199,7 @@ def HTML_TEMPLATE():
         <p id="searchresult-text-{i}" class="searchresult-text">DragonForce, Noen Andre - With The Power of the Saber Blade</p>
         <p id="result-{i}-title" class="hidden"></p>
         <p id="result-{i}-artist" class="hidden"></p>
+        <p id="result-{i}-genius_id" class="hidden"></p>
         <p id="result-{i}-spotify_id" class="hidden"></p>
     </div>  
     """ for i in range(5))}
@@ -199,13 +220,91 @@ def HTML_TEMPLATE():
 <script>
 
 async function seeSongDetails(idx) {
+    document.getElementById('loading').classList.remove('hidden')
+    const genius_id = document.getElementById(`result-${idx}-genius_id`).textContent
+    const spotify_id = document.getElementById(`result-${idx}-spotify_id`).textContent
+    const title = document.getElementById(`result-${idx}-title`).textContent
+
+    const songInfo = {}
     for (attr of ["title", "artist", "spotify_id"]) {
-        document.getElementById(attr).value = document.getElementById(`result-${idx}-${attr}`).textContent
+        songInfo[attr] = document.getElementById(`result-${idx}-${attr}`).textContent
     }
-    //const songName = document.getElementById(`result-${idx}-title`).textContent
-    //const spotify_id = document.getElementById(`result-${idx}-spotify_id`).textContent
-    //const genre = await getGenre(songName, spotify_id)
-    //document.getElementById('genre').value = genre
+
+    if (genius_id) {
+        const geniusUrl = 'https://genius-song-lyrics1.p.rapidapi.com/song/details/?id=' + genius_id;
+        const geniusOptions = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': ' ''' + os.getenv('API_KEY') + ''' ',
+                'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
+            }
+        };
+
+        try {
+            const response = await fetch(geniusUrl, geniusOptions);
+            const result = await response.json();
+            console.log('genius response:', result)
+            songInfo['spotify_id'] = result.song.spotify_uuid
+            songInfo['genre'] = result.song.primary_tag.name
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const youtubeUrl = 'https://youtube138.p.rapidapi.com/channel/search/?id=UC1Q6g3eqybbJCM0sq8b1SIg&q=' + title;
+    const youtubeOptions = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': ' ''' + os.getenv('API_KEY') + ''' ',
+            'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
+        }
+    };
+
+    try {
+        const response = await fetch(youtubeUrl, youtubeOptions);
+        const result = await response.json();
+
+        songInfo['youtube_id'] = result.contents[0].video.videoId
+        let youtube_title = result.contents[0].video.title
+
+        var possibleValues = ["Easy", "Medium", "Hard", "Expert", "Expert+"];
+
+        for (var i = 0; i < possibleValues.length; i++) {
+            if (youtube_title.includes(possibleValues[i])) {
+                songInfo['difficulty'] = possibleValues[i];
+                break; 
+            }
+        }
+    } catch (error) {
+        console.error(error);
+    }
+
+    if (!songInfo['spotify_id']) {
+        const url = 'https://''' + os.getenv('API_URL') + '''/search/?q=' + title + ' ' + songInfo['artist'] + '&type=tracks&offset=0&limit=1';
+        const options = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': ' ''' + os.getenv('API_KEY') + ''' ',
+                'X-RapidAPI-Host': ' ''' + os.getenv('API_URL') + ''' '
+            }
+        };
+
+        try {
+            const response = await fetch(url, options);
+            const result = await response.json();
+            console.log(result.tracks.items[0].data.id);
+            songInfo['spotify_id'] = result.tracks.items[0].data.id
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+
+    for (attr of Object.keys(songInfo)) {
+        document.getElementById(attr).value = songInfo[attr]
+    }
+    document.getElementById('loading').classList.add('hidden')
+
 }
 
 function sortTable(column) {
@@ -255,53 +354,6 @@ function sortTable(column) {
     }
   }
 }
-/*
-async function getGenre(song) {
-    async function getID(song) {
-    
-        let id = ""
-        const url = 'https://genius-song-lyrics1.p.rapidapi.com/search/?q=' + song + '&per_page=10&page=1';
-        const options = {
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': ' ''' + os.getenv('API_KEY') + ''' ',
-                'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
-            }
-        };
-
-        try {
-            const response = await fetch(url, options);
-            const result = await response.json();
-            return result.hits[0].result.id
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    async function getGenreFromID(id) {
-        const url = 'https://genius-song-lyrics1.p.rapidapi.com/song/details/?id=' + id;
-        const options = {
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': ' ''' + os.getenv('API_KEY') + ''' ',
-                'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
-            }
-        };
-
-        try {
-            const response = await fetch(url, options);
-            const result = await response.json();
-            return result.song.primary_tag.name
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    const id = await getID(song)
-    const genre = await getGenreFromID(id)
-    return genre
-}
-*/
 
 document.addEventListener("DOMContentLoaded", function() {
     var rows = document.querySelector(".sortable-table").rows;
@@ -334,38 +386,82 @@ function debounce(func, wait) {
     };
 }
 
+function foundStringInSong(string, song) {
+    const normalizedStr = string.toLowerCase().replace(/[^a-z\s]/g, '');
+    const normalizedTitle = song.title.toLowerCase().replace(/[^a-z\s]/g, '');
+    const normalizedArtist = song.artist.toLowerCase().replace(/[^a-z\s]/g, '');
+
+    return normalizedTitle.includes(normalizedStr) || normalizedArtist.includes(normalizedStr)
+}
+
+function foundStringInAllSongs(string, songs) {
+    for (let song of songs) {
+        if (foundStringInSong(string, song)) {
+            return true
+        }
+    }
+    return false
+}
+
 async function searchForSongs(query) {
     if (!query) return
     document.getElementById('loading').classList.remove('hidden')
-    const url = 'https://''' + os.getenv('API_URL') + '''/search/?q=' + query + '&type=tracks&offset=0&limit=5';
+    const url = 'https://genius-song-lyrics1.p.rapidapi.com/search/?q=' + query + '&per_page=5&page=1';
     const options = {
         method: 'GET',
         headers: {
             'X-RapidAPI-Key': ' ''' + os.getenv('API_KEY') + ''' ',
-            'X-RapidAPI-Host': ' ''' + os.getenv('API_URL') + ''' '
+            'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
         }
     };
 
     try {
         const response = await fetch(url, options);
         const result = await response.json();
-        console.log(result.tracks.items);
         
         function processSongs(songs) {
             return songs.map(song => {
-                const songName = song.data.name;
-                const artistNames = song.data.artists.items.map(artist => artist.profile.name).join(", ");
                 return {
-                    songString: `${artistNames} - ${songName}`,
-                    albumLink: song.data.albumOfTrack.coverArt.sources[0].url,
-                    title: songName,
-                    artist: artistNames,
-                    spotify_id: song.data.id
+                    songString: song.result.full_title,
+                    albumLink: song.result.header_image_thumbnail_url,
+                    title: song.result.title,
+                    artist: song.result.primary_artist.name,
+                    genius_id: song.result.id
                 };
             });
         }
 
-        let processedSongs = processSongs(result.tracks.items);
+        let processedSongs = processSongs(result.hits);
+
+        if (!foundStringInAllSongs(query, processedSongs)) {
+            const SpotifyUrl = 'https://''' + os.getenv('API_URL') + '''/search/?q=' + query + '&type=tracks&offset=0&limit=5';
+            const SpotifyOptions = {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': ' ''' + os.getenv('API_KEY') + ''' ',
+                    'X-RapidAPI-Host': ' ''' + os.getenv('API_URL') + ''' '
+                }
+            };
+
+            try {
+                const response = await fetch(SpotifyUrl, SpotifyOptions);
+                const result = await response.json();
+
+                processedSongs = result.tracks.items.map(song => {
+                    const songName = song.data.name;
+                    const artistNames = song.data.artists.items.map(artist => artist.profile.name).join(", ");
+                    return {
+                        songString: `${artistNames} - ${songName}`,
+                        albumLink: song.data.albumOfTrack.coverArt.sources[0].url,
+                        title: songName,
+                        artist: artistNames,
+                        spotify_id: song.data.id
+                    };
+                })
+            } catch(error) {
+                console.log(error)
+            }
+        }
 
         processedSongs.forEach((song, index) => {
             let {songString, albumLink} = song
@@ -379,8 +475,12 @@ async function searchForSongs(query) {
             var parentDiv = document.getElementById(`searchresult-container${index}`);
             parentDiv.classList.remove('hidden');
 
-            for (attr of ["title", "artist", "spotify_id"]) {
-                document.getElementById(`result-${index}-${attr}`).textContent = song[attr]
+            for (attr of ["title", "artist", "genius_id", "spotify_id"]) {
+                if (attr in song) {
+                    document.getElementById(`result-${index}-${attr}`).textContent = song[attr]
+                } else {
+                    document.getElementById(`result-${index}-${attr}`).textContent = ""
+                }
             }
         })
     } catch (error) {
@@ -432,4 +532,4 @@ def add_song():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
