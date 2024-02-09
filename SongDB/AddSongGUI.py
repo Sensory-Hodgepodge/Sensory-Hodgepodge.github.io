@@ -202,10 +202,10 @@ async function seeSongDetails(idx) {
     for (attr of ["title", "artist", "spotify_id"]) {
         document.getElementById(attr).value = document.getElementById(`result-${idx}-${attr}`).textContent
     }
-    const songName = document.getElementById(`result-${idx}-title`).textContent
-    const spotify_id = document.getElementById(`result-${idx}-spotify_id`).textContent
-    const genre = await getGenre(songName, spotify_id)
-    document.getElementById('genre').value = genre
+    //const songName = document.getElementById(`result-${idx}-title`).textContent
+    //const spotify_id = document.getElementById(`result-${idx}-spotify_id`).textContent
+    //const genre = await getGenre(songName, spotify_id)
+    //document.getElementById('genre').value = genre
 }
 
 function sortTable(column) {
