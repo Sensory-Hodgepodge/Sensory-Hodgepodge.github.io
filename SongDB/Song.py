@@ -1,22 +1,34 @@
+import json
+import os
+
+current_file_path = os.path.abspath(__file__)
+current_file_directory = os.path.dirname(current_file_path)
+
+
+def get_attributes():
+    with open(f'{current_file_directory}/db/attributes.json', 'r') as file:
+        data = json.load(file)
+    return data['attributes']
+
+
+def get_attributes_and_names():
+    modified_attributes = {}
+    for attr in get_attributes():
+        modified_key = attr.replace('_', ' ').capitalize()
+        modified_attributes[attr] = modified_key
+
+    return modified_attributes
+
+
 class Song:
-    def __init__(self, title, artist, date_recorded, spotify_link, youtube_link, difficulty, tolerability, vibe):
-        self.title = title
-        self.artist = artist
-        self.date_recorded = date_recorded
-        self.spotify_link = spotify_link
-        self.youtube_link = youtube_link
-        self.difficulty = difficulty
-        self.tolerability = tolerability
-        self.vibe = vibe
+    def __init__(self, **kwargs):
+        attributes = get_attributes()
+        for attr in attributes:
+            setattr(self, attr, kwargs.get(attr, None))
 
     def to_dict(self):
-        return {
-            'title': self.title,
-            'artist': self.artist,
-            'date_recorded': self.date_recorded,
-            'spotify_link': self.spotify_link,
-            'youtube_link': self.youtube_link,
-            'difficulty': self.difficulty,
-            'tolerability': self.tolerability,
-            'vibe': self.vibe
-        }
+        song_dict = {}
+        attributes = get_attributes()
+        for attr in attributes:
+            song_dict[f'{attr}'] = getattr(self, f'{attr}')
+        return song_dict

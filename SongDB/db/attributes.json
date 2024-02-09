@@ -2,8 +2,9 @@
   "attributes": [
     "title",
     "artist",
+    "genre",
     "date_recorded",
-    "spotify_link",
+    "spotify_id",
     "youtube_embed_link",
     "difficulty",
     "tolerability",

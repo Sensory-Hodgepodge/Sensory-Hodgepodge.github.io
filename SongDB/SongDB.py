@@ -14,7 +14,7 @@ class SongDatabase:
     def add_or_update_song(self, new_song):
         existing_song = Query()
         existing_song = self.db.search(
-            (existing_song.title == new_song.title) & (existing_song.artist == new_song.artist))
+            (existing_song.title == new_song.title) & (existing_song.artist == new_song.artist) & (existing_song.date_recorded == new_song.date_recorded))
 
         if existing_song:
             self.db.update(new_song.to_dict(), doc_ids=[
