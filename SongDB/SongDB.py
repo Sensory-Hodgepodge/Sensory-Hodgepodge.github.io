@@ -30,6 +30,23 @@ class SongDatabase:
         print(result)
         return [Song(**record) for record in result]
 
+    def fetch_all_songs_with_attribute(self, attribute_name, attribute_value):
+        song = Query()
+        result = self.db.search(
+            getattr(song, attribute_name) == attribute_value)
+        print('DB Query:')
+        print(result)
+        return [Song(**record) for record in result]
+
+    def fetch_all_unique_in_attribute(self, attribute):
+        all = self.db.all()
+        unique = []
+        for song in all:
+            song_dict = Song(**song).to_dict()
+            if song_dict[attribute] not in unique:
+                unique.append(song_dict[attribute])
+        return unique
+
     def fetch_all_songs(self):
         all = self.db.all()
         return [Song(**song) for song in all]
