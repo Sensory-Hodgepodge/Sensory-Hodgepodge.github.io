@@ -2,13 +2,13 @@
   "attributes": [
     "title",
     "artist",
-    "genre",
     "date_recorded",
-    "spotify_id",
-    "youtube_id",
     "difficulty",
     "tolerability",
     "vibe",
+    "genre",
+    "youtube_id",
+    "spotify_id",
     "source"
   ]
 }
