@@ -25,79 +25,20 @@ title: Beat Saber
 nav_order: 1
 has_children: true
 ---
-<html>
-<head>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-  }
-  .sortable-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 20px;
-  }
-  .sortable-table th, .sortable-table td {
-    border: 1px solid #ddd;
-    text-align: left;
-    padding: 8px;
-  }
-  .sortable-table th {
-    background-color: #f2f2f2;
-    
-  }
-  .sortable-table th:hover {
-    background-color: #e1e1e1;
-    cursor: default;
-  }
-  .sortable-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  .sortable-table tr:hover {
-  background-color: #e1e1e1;
-  cursor: alias;
+
+```json:table
+{
+    "fields" : [
+        {"key": "a", "label": "AA", "sortable": true},
+        {"key": "b", "label": "BB"},
+        {"key": "c", "label": "CC"}
+    ],
+    "items" : [
+      {"a": "11", "b": "22", "c": "33"},
+      {"a": "211", "b": "222", "c": "233"}
+    ]
 }
-    .searchresult-container {
-        display: flex;
-        padding: 5px 6px 5px 0px;
-        width: 100%;
-        gap: 1rem;
-        align-items: center;
-        border-radius: 1rem;
-    }
-    .searchresult-container:hover {
-    background-color: #e1e1e1;
-    cursor: w-resize;
-    }
-    .searchresult-text {
-        font-weight: 600;
-    }
-    </style>
-    </head>
-<body>
-<table class="sortable-table">
-<thead>
-  <tr>
-    ''' + get_table_headers() + '''
-  </tr>
-  </thead>
-  <tbody>
-''' + get_songs_table_rows() + '''
-  </tbody>
-</table> 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    var rows = document.querySelector(".sortable-table").rows;
-    for (let i = 1; i < rows.length; i++) { // Start from 1 to skip table header
-        rows[i].addEventListener("click", function() {
-        ''' + get_event_listeners() + '''
-        });
-    }
-
-});
-</script>
-</body>
-
-    '''
+'''
     return output_string
 
 
