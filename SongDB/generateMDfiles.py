@@ -63,6 +63,7 @@ grand-parent: Beat Saber
 '''
     with open(f'{bs_path}/{filename}.md', 'w') as mdDoc:
         mdDoc.write(output_string)
+        mdDoc.close()
 
 
 def make_all_songs():
@@ -76,12 +77,15 @@ has_children: true
 
 '''
     songs = db.fetch_all_songs()
-    output_string = ""
     for song in songs:
         song = song.to_dict()
-        output_string += f'''## {song['title']} - {song['artist']}
+        output_string += f'''
+## {song['title']} - {song['artist']}
+
 ### {song['difficulty']} ({song['date_recorded']})
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/{song['youtube_id']}?si=kK4lrMARYXlzzrIM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 '''
         make_one_song(song, "All Songs")
     return output_string
@@ -92,9 +96,12 @@ def generate_all_files():
     [os.remove(os.path.join(bs_path, f)) for f in os.listdir(bs_path)]
     with open(f'{bs_path}/BeatSaber.md', 'w') as mdDoc:
         mdDoc.write(make_front_page())
+        mdDoc.close()
 
+    all_songs_string = make_all_songs()
     with open(f'{bs_path}/AllSongs.md', 'w') as mdDoc:
-        mdDoc.write(make_all_songs())
+        mdDoc.write(all_songs_string)
+        mdDoc.close()
 
 
 generate_all_files()
