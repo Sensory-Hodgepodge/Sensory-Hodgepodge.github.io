@@ -38,6 +38,7 @@ has_children: true
       {"a": "211", "b": "222", "c": "233"}
     ]
 }
+```
 '''
     return output_string
 
