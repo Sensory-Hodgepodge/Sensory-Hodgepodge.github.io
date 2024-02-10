@@ -1,9 +1,11 @@
 import os
+import re
 from SongDB import SongDatabase
 from Song import get_attributes_and_names
 
 current_file_path = os.path.abspath(__file__)
 current_file_directory = os.path.dirname(current_file_path)
+bs_path = current_file_directory.replace('SongDB', 'BeatSaber')
 
 db = SongDatabase()
 
@@ -41,9 +43,17 @@ has_children: true
     return output_string
 
 
-def make_one_song(song):
-    song = song.to_dict()
-    output_string = f'''## {song['title']} - {song['artist']}
+def make_one_song(song, parent):
+    filename = song['title'] + song['artist']
+    filename = re.sub(r'[^\w]', '', filename)
+    output_string = f'''---
+layout: default
+title: {song['title']}
+parent: {parent}
+grand-parent: Beat Saber
+---
+
+# {song['title']} - {song['artist']}
 - **Genre**: {song['genre']}
 - **Vibe**: {song['vibe']}
 - **Tolerability**: {song['tolerability']}
@@ -51,9 +61,8 @@ def make_one_song(song):
 ### {song['difficulty']} ({song['date_recorded']})
 <iframe width="560" height="315" src="https://www.youtube.com/embed/{song['youtube_id']}?si=kK4lrMARYXlzzrIM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 '''
-    return output_string + '''
----
-'''
+    with open(f'{bs_path}/{filename}.md', 'w') as mdDoc:
+        mdDoc.write(output_string)
 
 
 def make_all_songs():
@@ -74,12 +83,12 @@ has_children: true
 ### {song['difficulty']} ({song['date_recorded']})
 <iframe width="560" height="315" src="https://www.youtube.com/embed/{song['youtube_id']}?si=kK4lrMARYXlzzrIM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 '''
+        make_one_song(song, "All Songs")
     return output_string
 
 
 def generate_all_files():
     # Delete everything in it
-    bs_path = current_file_directory.replace('SongDB', 'BeatSaber')
     [os.remove(os.path.join(bs_path, f)) for f in os.listdir(bs_path)]
     with open(f'{bs_path}/BeatSaber.md', 'w') as mdDoc:
         mdDoc.write(make_front_page())
