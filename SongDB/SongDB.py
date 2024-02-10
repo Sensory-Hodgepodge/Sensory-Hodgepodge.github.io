@@ -48,5 +48,8 @@ class SongDatabase:
         return unique
 
     def fetch_all_songs(self):
+        def sort_key(doc):
+            return doc['date_recorded']
         all = self.db.all()
+        all.sort(key=sort_key, reverse=True)
         return [Song(**song) for song in all]
