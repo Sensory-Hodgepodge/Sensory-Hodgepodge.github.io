@@ -45,7 +45,7 @@ has_children: true
 
 
 def make_one_song(song, parent, nav_order):
-    filename = song[0]['title'] + song[0]['artist']
+    filename = parent + song[0]['title'] + song[0]['artist']
     filename = re.sub(r'[^\w]', '', filename)
     output_string = f'''---
 layout: default
@@ -100,6 +100,40 @@ has_children: true
     return output_string
 
 
+def make_all_attribute_sorted():
+    attributes_and_names = get_attributes_and_names()
+    for attribute in attributes_and_names:
+        attrName = attributes_and_names[attribute]
+        output_string = f'''---
+layout: default
+title: {attrName}
+parent: Beat Saber
+nav_order: 1
+has_children: true
+---
+
+'''
+        uniques = db.fetch_all_unique_in_attribute(attribute)
+        for unique in uniques:
+            output_string += f'''## {unique}
+'''
+            songsHere = db.fetch_all_songs_with_attribute(attribute, unique)
+            for idx, song in enumerate(songsHere):
+                song = song.to_dict()
+                make_one_song([song], attrName, idx + 1)
+                output_string += f'''
+### {song['title']} - {song['artist']}
+
+#### {song['difficulty']} ({song['date_recorded']})
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/{song['youtube_id']}?si=kK4lrMARYXlzzrIM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+'''
+    with open(f'{bs_path}/{attrName}.md', 'w') as mdFile:
+        mdFile.write(output_string)
+        mdFile.close()
+
+
 def generate_all_files():
     # Delete everything in it
     [os.remove(os.path.join(bs_path, f)) for f in os.listdir(bs_path)]
@@ -111,6 +145,8 @@ def generate_all_files():
     with open(f'{bs_path}/AllSongs.md', 'w') as mdDoc:
         mdDoc.write(all_songs_string)
         mdDoc.close()
+
+    make_all_attribute_sorted()
 
 
 generate_all_files()
