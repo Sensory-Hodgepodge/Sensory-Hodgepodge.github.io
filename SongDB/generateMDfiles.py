@@ -46,6 +46,8 @@ has_children: true
         for attr in attrs_and_names:
             val = song.to_dict()[attr]
             output_string += f'{val} |'
+        output_string += f'''
+    |'''
     return output_string
 
 
