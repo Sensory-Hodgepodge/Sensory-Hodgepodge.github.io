@@ -2,7 +2,7 @@
 layout: default
 title: Technicolor
 parent: All Songs
-grand-parent: Beat Saber
+grand_parent: Beat Saber
 ---
 
 # Technicolor - Madeon

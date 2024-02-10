@@ -2,7 +2,7 @@
 layout: default
 title: Someone Else's Hat
 parent: All Songs
-grand-parent: Beat Saber
+grand_parent: Beat Saber
 ---
 
 # Someone Else's Hat - David Maxim Micic

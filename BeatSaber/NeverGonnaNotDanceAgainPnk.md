@@ -2,7 +2,7 @@
 layout: default
 title: Never Gonna Not Dance Again
 parent: All Songs
-grand-parent: Beat Saber
+grand_parent: Beat Saber
 ---
 
 # Never Gonna Not Dance Again - P!nk

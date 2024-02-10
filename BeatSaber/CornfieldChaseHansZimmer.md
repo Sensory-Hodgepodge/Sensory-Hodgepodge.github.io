@@ -2,7 +2,7 @@
 layout: default
 title: Cornfield Chase
 parent: All Songs
-grand-parent: Beat Saber
+grand_parent: Beat Saber
 ---
 
 # Cornfield Chase - Hans Zimmer

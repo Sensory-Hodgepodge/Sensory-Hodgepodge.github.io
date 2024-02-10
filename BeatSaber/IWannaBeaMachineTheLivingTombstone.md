@@ -2,7 +2,7 @@
 layout: default
 title: I Wanna Be a Machine
 parent: All Songs
-grand-parent: Beat Saber
+grand_parent: Beat Saber
 ---
 
 # I Wanna Be a Machine - The Living Tombstone

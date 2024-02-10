@@ -2,7 +2,7 @@
 layout: default
 title: Spin Eternally
 parent: All Songs
-grand-parent: Beat Saber
+grand_parent: Beat Saber
 ---
 
 # Spin Eternally - Jaroslav Beck, Boom Kitty & Camellia

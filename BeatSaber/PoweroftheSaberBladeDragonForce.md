@@ -2,7 +2,7 @@
 layout: default
 title: Power of the Saber Blade
 parent: All Songs
-grand-parent: Beat Saber
+grand_parent: Beat Saber
 ---
 
 # Power of the Saber Blade - DragonForce

@@ -2,7 +2,7 @@
 layout: default
 title: Somewhere Out There
 parent: All Songs
-grand-parent: Beat Saber
+grand_parent: Beat Saber
 ---
 
 # Somewhere Out There - acloudyskye

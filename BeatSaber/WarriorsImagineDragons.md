@@ -2,7 +2,7 @@
 layout: default
 title: Warriors
 parent: All Songs
-grand-parent: Beat Saber
+grand_parent: Beat Saber
 ---
 
 # Warriors - Imagine Dragons

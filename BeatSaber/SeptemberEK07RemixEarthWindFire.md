@@ -2,7 +2,7 @@
 layout: default
 title: September (EK-07 Remix)
 parent: All Songs
-grand-parent: Beat Saber
+grand_parent: Beat Saber
 ---
 
 # September (EK-07 Remix) - Earth, Wind & Fire

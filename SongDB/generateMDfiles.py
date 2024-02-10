@@ -50,7 +50,7 @@ def make_one_song(song, parent):
 layout: default
 title: {song['title']}
 parent: {parent}
-grand-parent: Beat Saber
+grand_parent: Beat Saber
 ---
 
 # {song['title']} - {song['artist']}
