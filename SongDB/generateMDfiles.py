@@ -67,9 +67,13 @@ has_children: true
 
 '''
     songs = db.fetch_all_songs()
+    output_string = ""
     for song in songs:
-        output_string = output_string + \
-            make_one_song(song)
+        song = song.to_dict()
+        output_string += f'''## {song['title']} - {song['artist']}
+### {song['difficulty']} ({song['date_recorded']})
+<iframe width="560" height="315" src="https://www.youtube.com/embed/{song['youtube_id']}?si=kK4lrMARYXlzzrIM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+'''
     return output_string
 
 
