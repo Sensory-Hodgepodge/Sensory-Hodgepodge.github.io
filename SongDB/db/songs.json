@@ -1,1 +1,148 @@
-{"_default": {"1": {"title": "I Wanna Be a Machine", "artist": "The Living Tombstone", "genre": "Rap", "date_recorded": "2024-01-19", "spotify_id": "0crWBrpRLkMHmOgYq8CXsV", "youtube_id": "ty0ciLcsub0", "difficulty": "Expert", "tolerability": "I grenseland", "vibe": "Teknisk vanskelig", "source": "Beat Saber (OST 4)"}, "2": {"title": "As the World Caves In", "artist": "Sarah Cothran", "genre": "Rock", "date_recorded": "2024-01-27", "spotify_id": "2xXNLutYAOELYVObYb1C1S", "youtube_id": "wddjQyvFE7E", "difficulty": "Expert", "tolerability": "Faktisk bra sang", "vibe": "Visuelt tilfredsstillende", "source": "Uoffisiell nedlasting ;)"}, "3": {"title": "Power of the Saber Blade", "artist": "DragonForce", "genre": "Rock", "date_recorded": "2024-01-18", "spotify_id": "1rzLqwGDGEIaeLUCfTcYdi", "youtube_id": "piz0Z6XNSNQ", "difficulty": "Hard", "tolerability": "I grenseland", "vibe": "Teknisk vanskelig", "source": "Beat Saber (OST 6)"}, "4": {"title": "Cornfield Chase", "artist": "Hans Zimmer", "genre": "Pop", "date_recorded": "2024-01-27", "spotify_id": "6pWgRkpqVfxnj3WuIcJ7WP", "youtube_id": "8i0H5u-mWAc", "difficulty": "Expert", "tolerability": "Faktisk bra sang", "vibe": "Visuelt tilfredsstillende", "source": "Uoffisiell nedlasting ;)"}, "5": {"title": "Someone Else's Hat", "artist": "David Maxim Micic", "genre": "Rock", "date_recorded": "2024-01-27", "spotify_id": "4hTQEZwCSAAjGCzreHuufS", "youtube_id": "dROdwF9WQi4", "difficulty": "Expert", "tolerability": "Faktisk bra sang", "vibe": "Visuelt tilfredsstillende", "source": "Uoffisiell nedlasting ;)"}, "6": {"title": "Somewhere Out There", "artist": "acloudyskye", "genre": "Electronica", "date_recorded": "2024-01-27", "spotify_id": "13X0MbPS0WOenZsShfvI5g", "youtube_id": "1yi0h0MqSQA", "difficulty": "Expert", "tolerability": "I grenseland", "vibe": "Visuelt tilfredsstillende", "source": "Uoffisiell nedlasting ;)"}, "7": {"title": "Spin Eternally", "artist": "Jaroslav Beck, Boom Kitty & Camellia", "genre": "Hardcore EDM", "date_recorded": "2024-01-27", "spotify_id": "18qs3auwHsCpJjBMp43y2F", "youtube_id": "1PtINXcm4s8", "difficulty": "Expert", "tolerability": "Er dette musikk?", "vibe": "Teknisk vanskelig", "source": "Beat Saber (OST 4)"}, "8": {"title": "Spin Eternally", "artist": "Jaroslav Beck, Boom Kitty & Camellia", "genre": "Hardcore EDM", "date_recorded": "2024-01-20", "spotify_id": "18qs3auwHsCpJjBMp43y2F", "youtube_id": "yDQaxunesF0", "difficulty": "Expert (Fail)", "tolerability": "Er dette musikk?", "vibe": "Teknisk vanskelig", "source": "Beat Saber (OST 4)"}, "9": {"title": "Warriors", "artist": "Imagine Dragons", "genre": "Rock", "date_recorded": "2024-01-19", "spotify_id": "1lgN0A2Vki2FTON5PYq42m", "youtube_id": "Hg6iJxgYXcU", "difficulty": "Expert", "tolerability": "Faktisk bra sang", "vibe": "Teknisk vanskelig", "source": "Beat Saber (Imagine Dragons album)"}, "10": {"title": "Technicolor", "artist": "Madeon", "genre": "Electronica", "date_recorded": "2024-02-08", "spotify_id": "3OgU43E7rPo3u9fNEIpdWi", "youtube_id": "70F5u-FVpXs", "difficulty": "Adventure", "tolerability": "I grenseland", "vibe": "Teknisk vanskelig", "source": "Uoffisiell nedlasting ;)"}, "11": {"title": "Never Gonna Not Dance Again", "artist": "P!nk", "genre": "Pop", "date_recorded": "2024-02-08", "spotify_id": "6sZo5nJIsFWXefRCCexpx0", "youtube_id": "67sN17EYTAQ", "difficulty": "Expert+", "tolerability": "Faktisk bra sang", "vibe": "Teknisk vanskelig", "source": "Uoffisiell nedlasting ;)"}, "12": {"title": "September (EK-07 Remix)", "artist": "Earth, Wind & Fire", "genre": "Electronica", "date_recorded": "2024-02-08", "spotify_id": "", "youtube_id": "3jP84U9VE9Y", "difficulty": "Expert+", "tolerability": "I grenseland", "vibe": "Teknisk vanskelig", "source": "Uoffisiell nedlasting ;)"}}}
+{
+  "_default": {
+    "1": {
+      "title": "I Wanna Be a Machine",
+      "artist": "The Living Tombstone",
+      "genre": "Rap",
+      "date_recorded": "2024-01-19",
+      "spotify_id": "0crWBrpRLkMHmOgYq8CXsV",
+      "youtube_id": "ty0ciLcsub0",
+      "difficulty": "Expert",
+      "tolerability": "I grenseland",
+      "vibe": "Teknisk vanskelig",
+      "source": "Beat Saber (OST 4)"
+    },
+    "2": {
+      "title": "As the World Caves In",
+      "artist": "Sarah Cothran",
+      "genre": "Rock",
+      "date_recorded": "2024-01-27",
+      "spotify_id": "2xXNLutYAOELYVObYb1C1S",
+      "youtube_id": "wddjQyvFE7E",
+      "difficulty": "Expert",
+      "tolerability": "Faktisk bra sang",
+      "vibe": "Visuelt tilfredsstillende",
+      "source": "Uoffisiell nedlasting ;)"
+    },
+    "3": {
+      "title": "Power of the Saber Blade",
+      "artist": "DragonForce",
+      "genre": "Rock",
+      "date_recorded": "2024-01-18",
+      "spotify_id": "1rzLqwGDGEIaeLUCfTcYdi",
+      "youtube_id": "piz0Z6XNSNQ",
+      "difficulty": "Hard",
+      "tolerability": "I grenseland",
+      "vibe": "Teknisk vanskelig",
+      "source": "Beat Saber (OST 6)"
+    },
+    "4": {
+      "title": "Cornfield Chase",
+      "artist": "Hans Zimmer",
+      "genre": "Pop",
+      "date_recorded": "2024-01-27",
+      "spotify_id": "6pWgRkpqVfxnj3WuIcJ7WP",
+      "youtube_id": "8i0H5u-mWAc",
+      "difficulty": "Expert",
+      "tolerability": "Faktisk bra sang",
+      "vibe": "Visuelt tilfredsstillende",
+      "source": "Uoffisiell nedlasting ;)"
+    },
+    "5": {
+      "title": "Someone Else's Hat",
+      "artist": "David Maxim Micic",
+      "genre": "Rock",
+      "date_recorded": "2024-01-27",
+      "spotify_id": "4hTQEZwCSAAjGCzreHuufS",
+      "youtube_id": "dROdwF9WQi4",
+      "difficulty": "Expert",
+      "tolerability": "Faktisk bra sang",
+      "vibe": "Visuelt tilfredsstillende",
+      "source": "Uoffisiell nedlasting ;)"
+    },
+    "6": {
+      "title": "Somewhere Out There",
+      "artist": "acloudyskye",
+      "genre": "Electronica",
+      "date_recorded": "2024-01-27",
+      "spotify_id": "13X0MbPS0WOenZsShfvI5g",
+      "youtube_id": "1yi0h0MqSQA",
+      "difficulty": "Expert",
+      "tolerability": "I grenseland",
+      "vibe": "Visuelt tilfredsstillende",
+      "source": "Uoffisiell nedlasting ;)"
+    },
+    "7": {
+      "title": "Spin Eternally",
+      "artist": "Jaroslav Beck, Boom Kitty & Camellia",
+      "genre": "Hardcore EDM",
+      "date_recorded": "2024-01-27",
+      "spotify_id": "18qs3auwHsCpJjBMp43y2F",
+      "youtube_id": "1PtINXcm4s8",
+      "difficulty": "Expert",
+      "tolerability": "Er dette musikk?",
+      "vibe": "Teknisk vanskelig",
+      "source": "Beat Saber (OST 4)"
+    },
+    "8": {
+      "title": "Spin Eternally",
+      "artist": "Jaroslav Beck, Boom Kitty & Camellia",
+      "genre": "Hardcore EDM",
+      "date_recorded": "2024-01-20",
+      "spotify_id": "18qs3auwHsCpJjBMp43y2F",
+      "youtube_id": "yDQaxunesF0",
+      "difficulty": "Expert (Fail)",
+      "tolerability": "Er dette musikk?",
+      "vibe": "Teknisk vanskelig",
+      "source": "Beat Saber (OST 4)"
+    },
+    "9": {
+      "title": "Warriors",
+      "artist": "Imagine Dragons",
+      "genre": "Rock",
+      "date_recorded": "2024-01-19",
+      "spotify_id": "1lgN0A2Vki2FTON5PYq42m",
+      "youtube_id": "Hg6iJxgYXcU",
+      "difficulty": "Expert",
+      "tolerability": "Faktisk bra sang",
+      "vibe": "Teknisk vanskelig",
+      "source": "Beat Saber (Imagine Dragons album)"
+    },
+    "10": {
+      "title": "Technicolor",
+      "artist": "Madeon",
+      "genre": "Electronica",
+      "date_recorded": "2024-02-08",
+      "spotify_id": "3OgU43E7rPo3u9fNEIpdWi",
+      "youtube_id": "70F5u-FVpXs",
+      "difficulty": "Adventure",
+      "tolerability": "I grenseland",
+      "vibe": "Teknisk vanskelig",
+      "source": "Uoffisiell nedlasting ;)"
+    },
+    "11": {
+      "title": "Never Gonna Not Dance Again",
+      "artist": "P!nk",
+      "genre": "Pop",
+      "date_recorded": "2024-02-08",
+      "spotify_id": "6sZo5nJIsFWXefRCCexpx0",
+      "youtube_id": "67sN17EYTAQ",
+      "difficulty": "Expert+",
+      "tolerability": "Faktisk bra sang",
+      "vibe": "Teknisk vanskelig",
+      "source": "Uoffisiell nedlasting ;)"
+    },
+    "12": {
+      "title": "September (EK-07 Remix)",
+      "artist": "Earth, Wind & Fire",
+      "genre": "Electronica",
+      "date_recorded": "2024-02-08",
+      "spotify_id": "",
+      "youtube_id": "3jP84U9VE9Y",
+      "difficulty": "Expert+",
+      "tolerability": "I grenseland",
+      "vibe": "Teknisk vanskelig",
+      "source": "Uoffisiell nedlasting ;)"
+    }
+  }
+}

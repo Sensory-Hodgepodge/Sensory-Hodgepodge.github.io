@@ -2,6 +2,7 @@ from tinydb import TinyDB, Query
 from Song import Song
 from itertools import groupby
 import os
+import operator
 
 current_file_path = os.path.abspath(__file__)
 current_file_directory = os.path.dirname(current_file_path)
@@ -49,15 +50,28 @@ class SongDatabase:
         return unique
 
     def fetch_all_songs_grouped(self):
+        # Assume self.db is already defined and points to your TinyDB database
         documents = self.db.all()
 
-        def sort_key(document):
-            return document['date_recorded'], document['artist'], document['title']
-        documents.sort(key=sort_key, reverse=True)
-        grouped_songs = {}
-        for key, group in groupby(documents, key=lambda x: (x['title'] + ' - ' + x['artist'])):
-            grouped_songs[key] = list(group)
-        return grouped_songs
+        # Step 1: Sort documents by date
+        documents.sort(key=lambda x: x['date_recorded'], reverse=True)
+
+        # Step 2: Group by title and artist
+        # Use a lambda function for grouping that combines title and artist into a tuple
+        grouped_documents = {}
+        for document in documents:
+            # Create a unique key for each song
+            key = (document['title'], document['artist'])
+            if key not in grouped_documents:
+                # Start a new list for this song
+                grouped_documents[key] = [document]
+            else:
+                # Append to the existing list for this song
+                grouped_documents[key].append(document)
+
+        # Step 3: Convert the grouped_documents dictionary values to a list of lists
+        songs_grouped = list(grouped_documents.values())
+        return songs_grouped
 
     def fetch_all_songs(self):
         def sort_key(doc):

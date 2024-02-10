@@ -3,7 +3,7 @@ layout: default
 title: I Wanna Be a Machine
 parent: All Songs
 grand_parent: Beat Saber
-nav_order: 10
+nav_order: 9
 has_children: false
 ---
 
@@ -12,5 +12,8 @@ has_children: false
 - **Vibe**: Teknisk vanskelig
 - **Tolerability**: I grenseland
 
+
 ### Expert (2024-01-19)
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ty0ciLcsub0?si=kK4lrMARYXlzzrIM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+

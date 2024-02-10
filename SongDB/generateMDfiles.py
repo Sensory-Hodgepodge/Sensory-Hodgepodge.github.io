@@ -1,3 +1,4 @@
+import json
 import os
 import re
 from SongDB import SongDatabase
@@ -44,24 +45,29 @@ has_children: true
 
 
 def make_one_song(song, parent, nav_order):
-    filename = song['title'] + song['artist']
+    filename = song[0]['title'] + song[0]['artist']
     filename = re.sub(r'[^\w]', '', filename)
     output_string = f'''---
 layout: default
-title: {song['title']}
+title: {song[0]['title']}
 parent: {parent}
 grand_parent: Beat Saber
 nav_order: {nav_order + 1}
 has_children: false
 ---
 
-## {song['title']} - {song['artist']}
-- **Genre**: {song['genre']}
-- **Vibe**: {song['vibe']}
-- **Tolerability**: {song['tolerability']}
+## {song[0]['title']} - {song[0]['artist']}
+- **Genre**: {song[0]['genre']}
+- **Vibe**: {song[0]['vibe']}
+- **Tolerability**: {song[0]['tolerability']}
 
-### {song['difficulty']} ({song['date_recorded']})
-<iframe width="560" height="315" src="https://www.youtube.com/embed/{song['youtube_id']}?si=kK4lrMARYXlzzrIM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+'''
+    for play in song:
+        output_string += f'''
+### {play['difficulty']} ({play['date_recorded']})
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/{play['youtube_id']}?si=kK4lrMARYXlzzrIM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 '''
     with open(f'{bs_path}/{filename}.md', 'w') as mdDoc:
         mdDoc.write(output_string)
@@ -78,15 +84,16 @@ has_children: true
 ---
 
 '''
-    songs = db.fetch_all_songs()
-    for idx, song in enumerate(songs):
-        song = song.to_dict()
+    grouped_songs = db.fetch_all_songs_grouped()
+
+    for idx, song in enumerate(grouped_songs):
+        one_song = song[0]
         output_string += f'''
-## {song['title']} - {song['artist']}
+## {one_song['title']} - {one_song['artist']}
 
-### {song['difficulty']} ({song['date_recorded']})
+### {one_song['difficulty']} ({one_song['date_recorded']})
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/{song['youtube_id']}?si=kK4lrMARYXlzzrIM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/{one_song['youtube_id']}?si=kK4lrMARYXlzzrIM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 '''
         make_one_song(song, "All Songs", idx)
