@@ -1,5 +1,6 @@
 from tinydb import TinyDB, Query
 from Song import Song
+from itertools import groupby
 import os
 
 current_file_path = os.path.abspath(__file__)
@@ -46,6 +47,17 @@ class SongDatabase:
             if song_dict[attribute] not in unique:
                 unique.append(song_dict[attribute])
         return unique
+
+    def fetch_all_songs_grouped(self):
+        documents = self.db.all()
+
+        def sort_key(document):
+            return document['date_recorded'], document['artist'], document['title']
+        documents.sort(key=sort_key, reverse=True)
+        grouped_songs = {}
+        for key, group in groupby(documents, key=lambda x: (x['title'] + ' - ' + x['artist'])):
+            grouped_songs[key] = list(group)
+        return grouped_songs
 
     def fetch_all_songs(self):
         def sort_key(doc):
