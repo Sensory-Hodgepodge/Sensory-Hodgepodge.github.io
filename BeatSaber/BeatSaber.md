@@ -611,6 +611,37 @@ has_children: true
         
   </tbody>
 </table> 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var rows = document.querySelector(".sortable-table").rows;
+    for (let i = 1; i < rows.length; i++) { // Start from 1 to skip table header
+        rows[i].addEventListener("click", function() {
+        
+        document.getElementById("title").value = this.cells[0].innerText;
+        
+        document.getElementById("artist").value = this.cells[1].innerText;
+        
+        document.getElementById("genre").value = this.cells[2].innerText;
+        
+        document.getElementById("date_recorded").value = this.cells[3].innerText;
+        
+        document.getElementById("spotify_id").value = this.cells[4].innerText;
+        
+        document.getElementById("youtube_id").value = this.cells[5].innerText;
+        
+        document.getElementById("difficulty").value = this.cells[6].innerText;
+        
+        document.getElementById("tolerability").value = this.cells[7].innerText;
+        
+        document.getElementById("vibe").value = this.cells[8].innerText;
+        
+        document.getElementById("source").value = this.cells[9].innerText;
+        
+        });
+    }
+
+});
+</script>
 </body>
 
     

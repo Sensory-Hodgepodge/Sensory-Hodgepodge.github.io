@@ -1,6 +1,6 @@
 import os
 from SongDB import SongDatabase
-from AddSongGUI import get_table_headers, get_songs_table_rows
+from AddSongGUI import get_table_headers, get_songs_table_rows, get_event_listeners
 
 current_file_path = os.path.abspath(__file__)
 current_file_directory = os.path.dirname(current_file_path)
@@ -84,6 +84,17 @@ has_children: true
 ''' + get_songs_table_rows() + '''
   </tbody>
 </table> 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var rows = document.querySelector(".sortable-table").rows;
+    for (let i = 1; i < rows.length; i++) { // Start from 1 to skip table header
+        rows[i].addEventListener("click", function() {
+        ''' + get_event_listeners() + '''
+        });
+    }
+
+});
+</script>
 </body>
 
     '''
