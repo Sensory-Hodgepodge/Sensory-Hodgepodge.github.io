@@ -3,9 +3,10 @@ layout: default
 title: As the World Caves In
 parent: All Songs
 grand_parent: Beat Saber
+nav_order: 3
 ---
 
-# As the World Caves In - Sarah Cothran
+## As the World Caves In - Sarah Cothran
 - **Genre**: Rock
 - **Vibe**: Visuelt tilfredsstillende
 - **Tolerability**: Faktisk bra sang

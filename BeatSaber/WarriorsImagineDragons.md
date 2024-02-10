@@ -3,9 +3,10 @@ layout: default
 title: Warriors
 parent: All Songs
 grand_parent: Beat Saber
+nav_order: 10
 ---
 
-# Warriors - Imagine Dragons
+## Warriors - Imagine Dragons
 - **Genre**: Rock
 - **Vibe**: Teknisk vanskelig
 - **Tolerability**: Faktisk bra sang

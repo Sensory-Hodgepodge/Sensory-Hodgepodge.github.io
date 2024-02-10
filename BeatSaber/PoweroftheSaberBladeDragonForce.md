@@ -3,9 +3,10 @@ layout: default
 title: Power of the Saber Blade
 parent: All Songs
 grand_parent: Beat Saber
+nav_order: 11
 ---
 
-# Power of the Saber Blade - DragonForce
+## Power of the Saber Blade - DragonForce
 - **Genre**: Rock
 - **Vibe**: Teknisk vanskelig
 - **Tolerability**: I grenseland

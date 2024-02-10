@@ -3,9 +3,10 @@ layout: default
 title: Spin Eternally
 parent: All Songs
 grand_parent: Beat Saber
+nav_order: 8
 ---
 
-# Spin Eternally - Jaroslav Beck, Boom Kitty & Camellia
+## Spin Eternally - Jaroslav Beck, Boom Kitty & Camellia
 - **Genre**: Hardcore EDM
 - **Vibe**: Teknisk vanskelig
 - **Tolerability**: Er dette musikk?

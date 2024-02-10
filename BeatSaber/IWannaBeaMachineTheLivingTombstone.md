@@ -3,9 +3,10 @@ layout: default
 title: I Wanna Be a Machine
 parent: All Songs
 grand_parent: Beat Saber
+nav_order: 9
 ---
 
-# I Wanna Be a Machine - The Living Tombstone
+## I Wanna Be a Machine - The Living Tombstone
 - **Genre**: Rap
 - **Vibe**: Teknisk vanskelig
 - **Tolerability**: I grenseland

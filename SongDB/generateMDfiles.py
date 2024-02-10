@@ -43,7 +43,7 @@ has_children: true
     return output_string
 
 
-def make_one_song(song, parent):
+def make_one_song(song, parent, nav_order):
     filename = song['title'] + song['artist']
     filename = re.sub(r'[^\w]', '', filename)
     output_string = f'''---
@@ -51,9 +51,10 @@ layout: default
 title: {song['title']}
 parent: {parent}
 grand_parent: Beat Saber
+nav_order: {nav_order}
 ---
 
-# {song['title']} - {song['artist']}
+## {song['title']} - {song['artist']}
 - **Genre**: {song['genre']}
 - **Vibe**: {song['vibe']}
 - **Tolerability**: {song['tolerability']}
@@ -77,7 +78,7 @@ has_children: true
 
 '''
     songs = db.fetch_all_songs()
-    for song in songs:
+    for idx, song in enumerate(songs):
         song = song.to_dict()
         output_string += f'''
 ## {song['title']} - {song['artist']}
@@ -87,7 +88,7 @@ has_children: true
 <iframe width="560" height="315" src="https://www.youtube.com/embed/{song['youtube_id']}?si=kK4lrMARYXlzzrIM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 '''
-        make_one_song(song, "All Songs")
+        make_one_song(song, "All Songs", idx)
     return output_string
 
 

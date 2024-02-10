@@ -3,9 +3,10 @@ layout: default
 title: Technicolor
 parent: All Songs
 grand_parent: Beat Saber
+nav_order: 0
 ---
 
-# Technicolor - Madeon
+## Technicolor - Madeon
 - **Genre**: Electronica
 - **Vibe**: Teknisk vanskelig
 - **Tolerability**: I grenseland

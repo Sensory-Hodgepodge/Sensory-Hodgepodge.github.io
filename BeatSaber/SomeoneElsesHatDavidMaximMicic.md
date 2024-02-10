@@ -3,9 +3,10 @@ layout: default
 title: Someone Else's Hat
 parent: All Songs
 grand_parent: Beat Saber
+nav_order: 5
 ---
 
-# Someone Else's Hat - David Maxim Micic
+## Someone Else's Hat - David Maxim Micic
 - **Genre**: Rock
 - **Vibe**: Visuelt tilfredsstillende
 - **Tolerability**: Faktisk bra sang
