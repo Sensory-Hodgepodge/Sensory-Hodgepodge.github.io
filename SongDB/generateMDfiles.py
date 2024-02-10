@@ -41,19 +41,19 @@ has_children: true
     return output_string
 
 
-def make_one_song(title, songs):
-    output_string = f'''## {title}
-- **Genre**: {songs[0]['genre']}
-- **Vibe**: {songs[0]['vibe']}
-- **Tolerability**: {songs[0]['tolerability']}
-'''
-    for song in songs:
-        output_string = output_string + f'''
+def make_one_song(song):
+    song = song.to_dict()
+    output_string = f'''## {song['title']} - {song['artist']}
+- **Genre**: {song['genre']}
+- **Vibe**: {song['vibe']}
+- **Tolerability**: {song['tolerability']}
+
 ### {song['difficulty']} ({song['date_recorded']})
 <iframe width="560" height="315" src="https://www.youtube.com/embed/{song['youtube_id']}?si=kK4lrMARYXlzzrIM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
 '''
-    return output_string
+    return output_string + '''
+---
+'''
 
 
 def make_all_songs():
@@ -66,10 +66,10 @@ has_children: true
 ---
 
 '''
-    grouped_songs = db.fetch_all_songs_grouped()
-    for song in grouped_songs:
+    songs = db.fetch_all_songs()
+    for song in songs:
         output_string = output_string + \
-            make_one_song(song, grouped_songs[song])
+            make_one_song(song)
     return output_string
 
 
