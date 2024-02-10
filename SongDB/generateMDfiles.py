@@ -1,6 +1,6 @@
 import os
 from SongDB import SongDatabase
-from AddSongGUI import get_table_headers, get_songs_table_rows, get_event_listeners
+from Song import get_attributes_and_names
 
 current_file_path = os.path.abspath(__file__)
 current_file_directory = os.path.dirname(current_file_path)
@@ -26,20 +26,26 @@ nav_order: 1
 has_children: true
 ---
 
-```json:table
-{
-    "fields" : [
-        {"key": "a", "label": "AA", "sortable": true},
-        {"key": "b", "label": "BB"},
-        {"key": "c", "label": "CC"}
-    ],
-    "items" : [
-      {"a": "11", "b": "22", "c": "33"},
-      {"a": "211", "b": "222", "c": "233"}
-    ]
-}
-```
-'''
+|'''
+    attrs_and_names = get_attributes_and_names()
+    for attr in attrs_and_names:
+        name = attrs_and_names[attr]
+        output_string += f'{name} |'
+
+    output_string += f'''
+    |'''
+
+    for attr in attrs_and_names:
+        output_string += f'--- |'
+
+    output_string += f'''
+    |'''
+
+    all_songs = db.fetch_all_songs()
+    for song in all_songs:
+        for attr in attrs_and_names:
+            val = song.to_dict()[attr]
+            output_string += f'{val} |'
     return output_string
 
 
