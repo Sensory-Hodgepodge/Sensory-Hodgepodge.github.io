@@ -3,7 +3,8 @@ layout: default
 title: Cornfield Chase
 parent: All Songs
 grand_parent: Beat Saber
-nav_order: 4
+nav_order: 5
+has_children: false
 ---
 
 ## Cornfield Chase - Hans Zimmer

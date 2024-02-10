@@ -3,7 +3,8 @@ layout: default
 title: Never Gonna Not Dance Again
 parent: All Songs
 grand_parent: Beat Saber
-nav_order: 1
+nav_order: 2
+has_children: false
 ---
 
 ## Never Gonna Not Dance Again - P!nk

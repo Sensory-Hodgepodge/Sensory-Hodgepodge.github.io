@@ -3,7 +3,8 @@ layout: default
 title: Somewhere Out There
 parent: All Songs
 grand_parent: Beat Saber
-nav_order: 6
+nav_order: 7
+has_children: false
 ---
 
 ## Somewhere Out There - acloudyskye

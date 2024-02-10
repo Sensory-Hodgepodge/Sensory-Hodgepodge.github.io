@@ -3,7 +3,8 @@ layout: default
 title: As the World Caves In
 parent: All Songs
 grand_parent: Beat Saber
-nav_order: 3
+nav_order: 4
+has_children: false
 ---
 
 ## As the World Caves In - Sarah Cothran

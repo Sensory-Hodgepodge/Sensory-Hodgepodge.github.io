@@ -3,7 +3,8 @@ layout: default
 title: I Wanna Be a Machine
 parent: All Songs
 grand_parent: Beat Saber
-nav_order: 9
+nav_order: 10
+has_children: false
 ---
 
 ## I Wanna Be a Machine - The Living Tombstone

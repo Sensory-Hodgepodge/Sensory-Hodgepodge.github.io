@@ -3,7 +3,8 @@ layout: default
 title: Someone Else's Hat
 parent: All Songs
 grand_parent: Beat Saber
-nav_order: 5
+nav_order: 6
+has_children: false
 ---
 
 ## Someone Else's Hat - David Maxim Micic

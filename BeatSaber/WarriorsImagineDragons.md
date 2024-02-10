@@ -3,7 +3,8 @@ layout: default
 title: Warriors
 parent: All Songs
 grand_parent: Beat Saber
-nav_order: 10
+nav_order: 11
+has_children: false
 ---
 
 ## Warriors - Imagine Dragons

@@ -3,7 +3,8 @@ layout: default
 title: Technicolor
 parent: All Songs
 grand_parent: Beat Saber
-nav_order: 0
+nav_order: 1
+has_children: false
 ---
 
 ## Technicolor - Madeon

@@ -51,7 +51,8 @@ layout: default
 title: {song['title']}
 parent: {parent}
 grand_parent: Beat Saber
-nav_order: {nav_order}
+nav_order: {nav_order + 1}
+has_children: false
 ---
 
 ## {song['title']} - {song['artist']}
