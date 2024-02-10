@@ -19,8 +19,7 @@ print('\n\n\n')
 
 
 def make_front_page():
-    output_string = '''
----
+    output_string = '''---
 layout: default
 title: Beat Saber
 nav_order: 1
