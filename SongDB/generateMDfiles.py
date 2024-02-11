@@ -146,7 +146,7 @@ def generate_all_files():
         mdDoc.write(all_songs_string)
         mdDoc.close()
 
-    make_all_attribute_sorted()
+    # make_all_attribute_sorted()
 
 
 generate_all_files()
